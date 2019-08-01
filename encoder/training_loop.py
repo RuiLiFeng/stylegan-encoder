@@ -174,11 +174,13 @@ def training_loop(
     for gpu in range(submit_config.num_gpus):
         with tf.name_scope('GPU%d' % gpu), tf.device('/gpu:%d' % gpu):
             E_gpu = E if gpu == 0 else E.clone(E.name + '_shadow')
-            lod_assign_ops = [tf.assign(G.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D.find_var('lod'), lod_in)]
+            G_gpu = G if gpu == 0 else G.clone(G.name + '_shadow')
+            D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
+            lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops[1]):
-                E_loss = dnnlib.util.call_func_by_name(G=G, E=E_gpu, D=D, E_opt=E_opt, training_set=training_set,
+                E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
