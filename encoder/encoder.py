@@ -14,6 +14,7 @@ from dnnlib.tflib.autosummary import autosummary
 def fc_encoder(
         image,  # Input image: [minibatch, channel, height, weight]
         labels=None,       #
+        is_training=False,  #
         dlatent_size=512,  # Output shape
         mapping_layers=8,  # Number of mapping layers
         mapping_fmaps=50,  # Shape of intermediate latent features
