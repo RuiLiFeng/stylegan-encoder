@@ -21,10 +21,12 @@ def fc_encoder(
         use_wscale=True,  # Enable equalized learning rate?
         mapping_lrmul=0.01,  # Learning rate multiplier for the mapping layers.
         mapping_nonlinearity='lrelu',  # Activation function: 'relu', 'lrelu'.
+        label_size=0,             #
         **_kwargs):  # Ignore unrecognized keyword args.
     act, gain = {'relu': (tf.nn.relu, np.sqrt(2)), 'lrelu': (leaky_relu, np.sqrt(2))}[mapping_nonlinearity]
     image.set_shape([None, 3, 1024, 1024])
     image = tf.cast(image, 'float32')
+    labels.set_shape([None, label_size])
     x = image
     lod_in = tf.get_variable('lod', initializer=np.float32(0), trainable=False)
     for layer_idx in range(mapping_layers):

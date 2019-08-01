@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/encoder/encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/encoder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="643">
-              <caret line="184" column="69" lean-forward="true" selection-start-line="184" selection-start-column="69" selection-end-line="184" selection-end-column="69" />
+            <state relative-caret-position="589">
+              <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -49,8 +49,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1628">
-              <caret line="87" column="80" lean-forward="true" selection-start-line="87" selection-start-column="80" selection-end-line="87" selection-end-column="80" />
+            <state relative-caret-position="671">
+              <caret line="166" column="69" lean-forward="true" selection-start-line="166" selection-start-column="69" selection-end-line="166" selection-end-column="69" />
             </state>
           </provider>
         </entry>
@@ -64,7 +64,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="684">
@@ -105,8 +105,8 @@
       <list>
         <option value="$PROJECT_DIR$/training/networks_stylegan.py" />
         <option value="$PROJECT_DIR$/train_encoder.py" />
-        <option value="$PROJECT_DIR$/encoder/training_loop.py" />
         <option value="$PROJECT_DIR$/encoder/encoder.py" />
+        <option value="$PROJECT_DIR$/encoder/training_loop.py" />
       </list>
     </option>
   </component>
@@ -185,7 +185,7 @@
       <option name="presentableId" value="Default" />
       <updated>1564480802275</updated>
       <workItem from="1564480820729" duration="23042000" />
-      <workItem from="1564646124090" duration="2136000" />
+      <workItem from="1564646124090" duration="2900000" />
     </task>
     <task id="LOCAL-00001" summary="add labels in fc_encoder">
       <created>1564647857301</created>
@@ -198,10 +198,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25178000" />
+    <option name="totallyTimeSpent" value="25942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-17" width="1096" height="1896" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25482625" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -303,10 +304,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="684">
+          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1628">
-          <caret line="87" column="80" lean-forward="true" selection-start-line="87" selection-start-column="80" selection-end-line="87" selection-end-column="80" />
+        <state relative-caret-position="671">
+          <caret line="166" column="69" lean-forward="true" selection-start-line="166" selection-start-column="69" selection-end-line="166" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encode_images.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="4" selection-start-line="2" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -321,29 +339,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encode_images.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="4" selection-start-line="2" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="643">
-          <caret line="184" column="69" lean-forward="true" selection-start-line="184" selection-start-column="69" selection-end-line="184" selection-end-column="69" />
+        <state relative-caret-position="589">
+          <caret line="139" lean-forward="true" selection-start-line="139" selection-end-line="139" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="36" lean-forward="true" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
