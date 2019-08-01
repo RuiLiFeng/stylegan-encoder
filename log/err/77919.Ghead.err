@@ -1,0 +1,2 @@
+/usr/local/sbin/startdocker: line 3: /tmp/startdocker.log: Permission denied
+/usr/local/sbin/startdocker: line 76: /tmp/startdocker.log: Permission denied

@@ -1,0 +1,277 @@
+Time is Thu Aug 1 15:43:13 CST 2019
+Directory is /ghome/fengrl/home/stylegan-encoder
+This job runs on following nodes:
+Node:G138
+Gpus:G138-gpu7
+G138-gpu6
+G138-gpu5
+G138-gpu4
+G138-gpu3
+G138-gpu2
+G138-gpu1
+G138-gpu0
+CUDA_VISIBLE_DEVICES:7,6,5,4,3,2,1,0
+Creating the run dir: /gdata/fengrl/encoder/results/00010-lia-ffhq-8gpu
+Copying files to the run dir
+dnnlib: Running encoder.training_loop.training_loop() on localhost...
+Streaming data using training.dataset.TFRecordDataset...
+Dataset shape = [3, 1024, 1024]
+Dynamic range = [0, 255]
+Label size    = 0
+Loading networks from "/gdata/fengrl/encoder/results/00000-lia-ffhq-8gpu/network-snapshot-000001.pkl"...
+
+Gs                              Params    OutputShape          WeightShape     
+---                             ---       ---                  ---             
+latents_in                      -         (?, 512)             -               
+labels_in                       -         (?, 0)               -               
+lod                             -         ()                   -               
+dlatent_avg                     -         (512,)               -               
+G_mapping/latents_in            -         (?, 512)             -               
+G_mapping/labels_in             -         (?, 0)               -               
+G_mapping/PixelNorm             -         (?, 512)             -               
+G_mapping/Dense0                262656    (?, 512)             (512, 512)      
+G_mapping/Dense1                262656    (?, 512)             (512, 512)      
+G_mapping/Dense2                262656    (?, 512)             (512, 512)      
+G_mapping/Dense3                262656    (?, 512)             (512, 512)      
+G_mapping/Dense4                262656    (?, 512)             (512, 512)      
+G_mapping/Dense5                262656    (?, 512)             (512, 512)      
+G_mapping/Dense6                262656    (?, 512)             (512, 512)      
+G_mapping/Dense7                262656    (?, 512)             (512, 512)      
+G_mapping/Broadcast             -         (?, 18, 512)         -               
+G_mapping/dlatents_out          -         (?, 18, 512)         -               
+Truncation                      -         (?, 18, 512)         -               
+G_synthesis/dlatents_in         -         (?, 18, 512)         -               
+G_synthesis/4x4/Const           534528    (?, 512, 4, 4)       (512,)          
+G_synthesis/4x4/Conv            2885632   (?, 512, 4, 4)       (3, 3, 512, 512)
+G_synthesis/ToRGB_lod8          1539      (?, 3, 4, 4)         (1, 1, 512, 3)  
+G_synthesis/8x8/Conv0_up        2885632   (?, 512, 8, 8)       (3, 3, 512, 512)
+G_synthesis/8x8/Conv1           2885632   (?, 512, 8, 8)       (3, 3, 512, 512)
+G_synthesis/ToRGB_lod7          1539      (?, 3, 8, 8)         (1, 1, 512, 3)  
+G_synthesis/Upscale2D           -         (?, 3, 8, 8)         -               
+G_synthesis/Grow_lod7           -         (?, 3, 8, 8)         -               
+G_synthesis/16x16/Conv0_up      2885632   (?, 512, 16, 16)     (3, 3, 512, 512)
+G_synthesis/16x16/Conv1         2885632   (?, 512, 16, 16)     (3, 3, 512, 512)
+G_synthesis/ToRGB_lod6          1539      (?, 3, 16, 16)       (1, 1, 512, 3)  
+G_synthesis/Upscale2D_1         -         (?, 3, 16, 16)       -               
+G_synthesis/Grow_lod6           -         (?, 3, 16, 16)       -               
+G_synthesis/32x32/Conv0_up      2885632   (?, 512, 32, 32)     (3, 3, 512, 512)
+G_synthesis/32x32/Conv1         2885632   (?, 512, 32, 32)     (3, 3, 512, 512)
+G_synthesis/ToRGB_lod5          1539      (?, 3, 32, 32)       (1, 1, 512, 3)  
+G_synthesis/Upscale2D_2         -         (?, 3, 32, 32)       -               
+G_synthesis/Grow_lod5           -         (?, 3, 32, 32)       -               
+G_synthesis/64x64/Conv0_up      1442816   (?, 256, 64, 64)     (3, 3, 512, 256)
+G_synthesis/64x64/Conv1         852992    (?, 256, 64, 64)     (3, 3, 256, 256)
+G_synthesis/ToRGB_lod4          771       (?, 3, 64, 64)       (1, 1, 256, 3)  
+G_synthesis/Upscale2D_3         -         (?, 3, 64, 64)       -               
+G_synthesis/Grow_lod4           -         (?, 3, 64, 64)       -               
+G_synthesis/128x128/Conv0_up    426496    (?, 128, 128, 128)   (3, 3, 256, 128)
+G_synthesis/128x128/Conv1       279040    (?, 128, 128, 128)   (3, 3, 128, 128)
+G_synthesis/ToRGB_lod3          387       (?, 3, 128, 128)     (1, 1, 128, 3)  
+G_synthesis/Upscale2D_4         -         (?, 3, 128, 128)     -               
+G_synthesis/Grow_lod3           -         (?, 3, 128, 128)     -               
+G_synthesis/256x256/Conv0_up    139520    (?, 64, 256, 256)    (3, 3, 128, 64) 
+G_synthesis/256x256/Conv1       102656    (?, 64, 256, 256)    (3, 3, 64, 64)  
+G_synthesis/ToRGB_lod2          195       (?, 3, 256, 256)     (1, 1, 64, 3)   
+G_synthesis/Upscale2D_5         -         (?, 3, 256, 256)     -               
+G_synthesis/Grow_lod2           -         (?, 3, 256, 256)     -               
+G_synthesis/512x512/Conv0_up    51328     (?, 32, 512, 512)    (3, 3, 64, 32)  
+G_synthesis/512x512/Conv1       42112     (?, 32, 512, 512)    (3, 3, 32, 32)  
+G_synthesis/ToRGB_lod1          99        (?, 3, 512, 512)     (1, 1, 32, 3)   
+G_synthesis/Upscale2D_6         -         (?, 3, 512, 512)     -               
+G_synthesis/Grow_lod1           -         (?, 3, 512, 512)     -               
+G_synthesis/1024x1024/Conv0_up  21056     (?, 16, 1024, 1024)  (3, 3, 32, 16)  
+G_synthesis/1024x1024/Conv1     18752     (?, 16, 1024, 1024)  (3, 3, 16, 16)  
+G_synthesis/ToRGB_lod0          51        (?, 3, 1024, 1024)   (1, 1, 16, 3)   
+G_synthesis/Upscale2D_7         -         (?, 3, 1024, 1024)   -               
+G_synthesis/Grow_lod0           -         (?, 3, 1024, 1024)   -               
+G_synthesis/images_out          -         (?, 3, 1024, 1024)   -               
+G_synthesis/lod                 -         ()                   -               
+G_synthesis/noise0              -         (1, 1, 4, 4)         -               
+G_synthesis/noise1              -         (1, 1, 4, 4)         -               
+G_synthesis/noise2              -         (1, 1, 8, 8)         -               
+G_synthesis/noise3              -         (1, 1, 8, 8)         -               
+G_synthesis/noise4              -         (1, 1, 16, 16)       -               
+G_synthesis/noise5              -         (1, 1, 16, 16)       -               
+G_synthesis/noise6              -         (1, 1, 32, 32)       -               
+G_synthesis/noise7              -         (1, 1, 32, 32)       -               
+G_synthesis/noise8              -         (1, 1, 64, 64)       -               
+G_synthesis/noise9              -         (1, 1, 64, 64)       -               
+G_synthesis/noise10             -         (1, 1, 128, 128)     -               
+G_synthesis/noise11             -         (1, 1, 128, 128)     -               
+G_synthesis/noise12             -         (1, 1, 256, 256)     -               
+G_synthesis/noise13             -         (1, 1, 256, 256)     -               
+G_synthesis/noise14             -         (1, 1, 512, 512)     -               
+G_synthesis/noise15             -         (1, 1, 512, 512)     -               
+G_synthesis/noise16             -         (1, 1, 1024, 1024)   -               
+G_synthesis/noise17             -         (1, 1, 1024, 1024)   -               
+images_out                      -         (?, 3, 1024, 1024)   -               
+---                             ---       ---                  ---             
+Total                           26219627                                       
+
+
+D                     Params    OutputShape          WeightShape     
+---                   ---       ---                  ---             
+images_in             -         (?, 3, 1024, 1024)   -               
+labels_in             -         (?, 0)               -               
+lod                   -         ()                   -               
+FromRGB_lod0          64        (?, 16, 1024, 1024)  (1, 1, 3, 16)   
+1024x1024/Conv0       2320      (?, 16, 1024, 1024)  (3, 3, 16, 16)  
+1024x1024/Conv1_down  4640      (?, 32, 512, 512)    (3, 3, 16, 32)  
+Downscale2D           -         (?, 3, 512, 512)     -               
+FromRGB_lod1          128       (?, 32, 512, 512)    (1, 1, 3, 32)   
+Grow_lod0             -         (?, 32, 512, 512)    -               
+512x512/Conv0         9248      (?, 32, 512, 512)    (3, 3, 32, 32)  
+512x512/Conv1_down    18496     (?, 64, 256, 256)    (3, 3, 32, 64)  
+Downscale2D_1         -         (?, 3, 256, 256)     -               
+FromRGB_lod2          256       (?, 64, 256, 256)    (1, 1, 3, 64)   
+Grow_lod1             -         (?, 64, 256, 256)    -               
+256x256/Conv0         36928     (?, 64, 256, 256)    (3, 3, 64, 64)  
+256x256/Conv1_down    73856     (?, 128, 128, 128)   (3, 3, 64, 128) 
+Downscale2D_2         -         (?, 3, 128, 128)     -               
+FromRGB_lod3          512       (?, 128, 128, 128)   (1, 1, 3, 128)  
+Grow_lod2             -         (?, 128, 128, 128)   -               
+128x128/Conv0         147584    (?, 128, 128, 128)   (3, 3, 128, 128)
+128x128/Conv1_down    295168    (?, 256, 64, 64)     (3, 3, 128, 256)
+Downscale2D_3         -         (?, 3, 64, 64)       -               
+FromRGB_lod4          1024      (?, 256, 64, 64)     (1, 1, 3, 256)  
+Grow_lod3             -         (?, 256, 64, 64)     -               
+64x64/Conv0           590080    (?, 256, 64, 64)     (3, 3, 256, 256)
+64x64/Conv1_down      1180160   (?, 512, 32, 32)     (3, 3, 256, 512)
+Downscale2D_4         -         (?, 3, 32, 32)       -               
+FromRGB_lod5          2048      (?, 512, 32, 32)     (1, 1, 3, 512)  
+Grow_lod4             -         (?, 512, 32, 32)     -               
+32x32/Conv0           2359808   (?, 512, 32, 32)     (3, 3, 512, 512)
+32x32/Conv1_down      2359808   (?, 512, 16, 16)     (3, 3, 512, 512)
+Downscale2D_5         -         (?, 3, 16, 16)       -               
+FromRGB_lod6          2048      (?, 512, 16, 16)     (1, 1, 3, 512)  
+Grow_lod5             -         (?, 512, 16, 16)     -               
+16x16/Conv0           2359808   (?, 512, 16, 16)     (3, 3, 512, 512)
+16x16/Conv1_down      2359808   (?, 512, 8, 8)       (3, 3, 512, 512)
+Downscale2D_6         -         (?, 3, 8, 8)         -               
+FromRGB_lod7          2048      (?, 512, 8, 8)       (1, 1, 3, 512)  
+Grow_lod6             -         (?, 512, 8, 8)       -               
+8x8/Conv0             2359808   (?, 512, 8, 8)       (3, 3, 512, 512)
+8x8/Conv1_down        2359808   (?, 512, 4, 4)       (3, 3, 512, 512)
+Downscale2D_7         -         (?, 3, 4, 4)         -               
+FromRGB_lod8          2048      (?, 512, 4, 4)       (1, 1, 3, 512)  
+Grow_lod7             -         (?, 512, 4, 4)       -               
+4x4/MinibatchStddev   -         (?, 513, 4, 4)       -               
+4x4/Conv              2364416   (?, 512, 4, 4)       (3, 3, 513, 512)
+4x4/Dense0            4194816   (?, 512)             (8192, 512)     
+4x4/Dense1            513       (?, 1)               (512, 1)        
+scores_out            -         (?, 1)               -               
+---                   ---       ---                  ---             
+Total                 23087249                                       
+
+Constructing encoder networks...
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1334, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1319, in _run_fn
+    options, feed_dict, fetch_list, target_list, run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1407, in _call_tf_sessionrun
+    run_metadata)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[3145728,512] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[{{node E/Dense0/weight/Assign}} = Assign[T=DT_FLOAT, _class=["loc:@E/Dense0/weight"], use_locking=true, validate_shape=true, _device="/job:localhost/replica:0/task:0/device:GPU:0"](E/Dense0/weight, E/Dense0/weight/Initializer/random_normal)]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/ghome/fengrl/home/stylegan-encoder/train_encoder.py", line 60, in <module>
+    main()
+  File "/ghome/fengrl/home/stylegan-encoder/train_encoder.py", line 55, in main
+    dnnlib.submit_run(**kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/submission/submit.py", line 290, in submit_run
+    run_wrapper(submit_config)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/submission/submit.py", line 242, in run_wrapper
+    util.call_func_by_name(func_name=submit_config.run_func_name, submit_config=submit_config, **submit_config.run_func_kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/util.py", line 257, in call_func_by_name
+    return func_obj(*args, **kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/encoder/training_loop.py", line 160, in training_loop
+    E = tflib.Network('E', num_channels=training_set.shape[0], resolution=training_set.shape[1], label_size=training_set.label_size, **E_args)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/tflib/network.py", line 99, in __init__
+    self.reset_own_vars()
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/tflib/network.py", line 190, in reset_own_vars
+    tfutil.run([var.initializer for var in self.own_vars.values()])
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/tflib/tfutil.py", line 26, in run
+    return tf.get_default_session().run(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 929, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1152, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1328, in _do_run
+    run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1348, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[3145728,512] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[node E/Dense0/weight/Assign (defined at /ghome/fengrl/home/stylegan-encoder/training/networks_stylegan.py:149)  = Assign[T=DT_FLOAT, _class=["loc:@E/Dense0/weight"], use_locking=true, validate_shape=true, _device="/job:localhost/replica:0/task:0/device:GPU:0"](E/Dense0/weight, E/Dense0/weight/Initializer/random_normal)]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+
+Caused by op 'E/Dense0/weight/Assign', defined at:
+  File "/ghome/fengrl/home/stylegan-encoder/train_encoder.py", line 60, in <module>
+    main()
+  File "/ghome/fengrl/home/stylegan-encoder/train_encoder.py", line 55, in main
+    dnnlib.submit_run(**kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/submission/submit.py", line 290, in submit_run
+    run_wrapper(submit_config)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/submission/submit.py", line 242, in run_wrapper
+    util.call_func_by_name(func_name=submit_config.run_func_name, submit_config=submit_config, **submit_config.run_func_kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/util.py", line 257, in call_func_by_name
+    return func_obj(*args, **kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/encoder/training_loop.py", line 160, in training_loop
+    E = tflib.Network('E', num_channels=training_set.shape[0], resolution=training_set.shape[1], label_size=training_set.label_size, **E_args)
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/tflib/network.py", line 98, in __init__
+    self._init_graph()
+  File "/ghome/fengrl/home/stylegan-encoder/dnnlib/tflib/network.py", line 155, in _init_graph
+    out_expr = self._build_func(*self.input_templates, **build_kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/encoder/encoder.py", line 30, in fc_encoder
+    x = dense(x, fmaps=fmaps, gain=gain, use_wscale=use_wscale, lrmul=mapping_lrmul)
+  File "/ghome/fengrl/home/stylegan-encoder/training/networks_stylegan.py", line 157, in dense
+    w = get_weight([x.shape[1].value, fmaps], **kwargs)
+  File "/ghome/fengrl/home/stylegan-encoder/training/networks_stylegan.py", line 149, in get_weight
+    return tf.get_variable('weight', shape=shape, initializer=init) * runtime_coef
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 1487, in get_variable
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 1237, in get_variable
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 540, in get_variable
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 492, in _true_getter
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 922, in _get_single_variable
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 183, in __call__
+    return cls._variable_v1_call(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 146, in _variable_v1_call
+    aggregation=aggregation)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 125, in <lambda>
+    previous_getter = lambda **kwargs: default_variable_creator(None, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variable_scope.py", line 2444, in default_variable_creator
+    expected_shape=expected_shape, import_scope=import_scope)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 187, in __call__
+    return super(VariableMetaclass, cls).__call__(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 1329, in __init__
+    constraint=constraint)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/variables.py", line 1481, in _init_from_args
+    validate_shape=validate_shape).op
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/state_ops.py", line 221, in assign
+    validate_shape=validate_shape)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/gen_state_ops.py", line 61, in assign
+    use_locking=use_locking, name=name)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/op_def_library.py", line 787, in _apply_op_helper
+    op_def=op_def)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/util/deprecation.py", line 488, in new_func
+    return func(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/ops.py", line 3274, in create_op
+    op_def=op_def)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/framework/ops.py", line 1770, in __init__
+    self._traceback = tf_stack.extract_stack()
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[3145728,512] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc
+	 [[node E/Dense0/weight/Assign (defined at /ghome/fengrl/home/stylegan-encoder/training/networks_stylegan.py:149)  = Assign[T=DT_FLOAT, _class=["loc:@E/Dense0/weight"], use_locking=true, validate_shape=true, _device="/job:localhost/replica:0/task:0/device:GPU:0"](E/Dense0/weight, E/Dense0/weight/Initializer/random_normal)]]
+Hint: If you want to see a list of allocated tensors when OOM happens, add report_tensor_allocations_upon_oom to RunOptions for current allocation info.
+
+

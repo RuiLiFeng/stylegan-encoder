@@ -1,0 +1,5 @@
+/usr/local/sbin/startdocker: line 3: /tmp/startdocker.log: Permission denied
+/usr/local/sbin/startdocker: line 76: /tmp/startdocker.log: Permission denied
+2019-08-01 07:35:53.354531: W tensorflow/core/common_runtime/bfc_allocator.cc:267] Allocator (GPU_0_bfc) ran out of memory trying to allocate 6.00GiB.  Current allocation summary follows.
+2019-08-01 07:35:53.356904: W tensorflow/core/common_runtime/bfc_allocator.cc:271] *****************************************************************************_______________________
+2019-08-01 07:35:53.356990: W tensorflow/core/framework/op_kernel.cc:1273] OP_REQUIRES failed at assign_op.h:117 : Resource exhausted: OOM when allocating tensor with shape[3145728,512] and type float on /job:localhost/replica:0/task:0/device:GPU:0 by allocator GPU_0_bfc

@@ -1,0 +1,16 @@
+  #PBS    -N  encoder
+  #PBS    -o  /ghome/fengrl/home/stylegan-encoder/log/out/$PBS_JOBID.out
+  #PBS    -e  /ghome/fengrl/home/stylegan-encoder/log/err/$PBS_JOBID.err
+  #PBS    -l nodes=1:gpus=8:E
+  #PBS    -r y
+  #PBS    -q mcc
+  cd $PBS_O_WORKDIR
+  echo Time is `date`
+  echo Directory is $PWD
+  echo This job runs on following nodes:
+  echo -n "Node:"
+  cat $PBS_NODEFILE
+  echo -n "Gpus:"
+  cat $PBS_GPUFILE
+  echo "CUDA_VISIBLE_DEVICES:"$CUDA_VISIBLE_DEVICES
+  startdocker -u "-v /gpub:/fengrl" -P /ghome/fengrl/home/stylegan-encoder -D /gdata/fengrl -c "python /ghome/fengrl/home/stylegan-encoder/train_encoder.py" bit:5000/cxs-py36-tf112-torch041	
