@@ -28,7 +28,7 @@ def fc_encoder(
     image = tf.cast(image, 'float32')
     labels.set_shape([None, label_size])
     x = image
-    lod_in = tf.get_variable('lod', initializer=np.float32(0), trainable=False)
+    lod_in = tf.cast(tf.get_variable('lod', initializer=np.float32(0.0), trainable=False), 'float32')
     for layer_idx in range(mapping_layers):
         with tf.variable_scope('Dense%d' % layer_idx):
             fmaps = dlatent_size if layer_idx == mapping_layers - 1 else mapping_fmaps
