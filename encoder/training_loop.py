@@ -6,7 +6,7 @@ import dnnlib.tflib as tflib
 from dnnlib.tflib.autosummary import autosummary
 
 import config
-import train
+import train_encoder
 from training import dataset
 from training import misc
 from metrics import metric_base
@@ -131,7 +131,7 @@ def training_loop(
     resume_time             = 0.0):     # Assumed wallclock time at the beginning. Affects reporting.
 
     # Initialize dnnlib and TensorFlow.
-    ctx = dnnlib.RunContext(submit_config, train)
+    ctx = dnnlib.RunContext(submit_config, train_encoder)
     tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 
