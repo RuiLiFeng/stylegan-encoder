@@ -15,7 +15,7 @@ def fc_encoder(
         image,  # Input image: [minibatch, channel, height, weight]
         dlatent_size=512,  # Output shape
         mapping_layers=8,  # Number of mapping layers
-        mapping_fmaps=512,  # Shape of intermediate latent features
+        mapping_fmaps=50,  # Shape of intermediate latent features
         use_wscale=True,  # Enable equalized learning rate?
         mapping_lrmul=0.01,  # Learning rate multiplier for the mapping layers.
         mapping_nonlinearity='lrelu',  # Activation function: 'relu', 'lrelu'.
