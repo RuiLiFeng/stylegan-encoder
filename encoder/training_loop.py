@@ -179,7 +179,7 @@ def training_loop(
             lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
-            with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
+            with tf.name_scope('E_loss'), tf.control_dependencies(tf.assign(E_gpu.find_var('lod'), lod_in)):
                 E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
