@@ -241,7 +241,7 @@ def training_loop(
                 tflib.run([E_train_op, Es_update_op],
                           {lod_in: sched.lod, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
                 cur_nimg += sched.minibatch
-            tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
+            #tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
 
         # Perform maintenance tasks once per tick.
         done = (cur_nimg >= total_kimg * 1000)
