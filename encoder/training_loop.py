@@ -169,7 +169,7 @@ def training_loop(
         minibatch_split = minibatch_in // submit_config.num_gpus
         Es_beta = 0.5 ** tf.div(tf.cast(minibatch_in, tf.float32),
                                 E_smoothing_kimg * 1000.0) if E_smoothing_kimg > 0.0 else 0.0
-    print(lod_in)
+
     E_opt = tflib.Optimizer(name='TrainE', learning_rate=lrate_in, **E_opt_args)
     for gpu in range(submit_config.num_gpus):
         with tf.name_scope('GPU%d' % gpu), tf.device('/gpu:%d' % gpu):
@@ -178,6 +178,7 @@ def training_loop(
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
             #lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
             lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
+            print(lod_in)
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
