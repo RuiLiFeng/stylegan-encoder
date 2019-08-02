@@ -94,9 +94,9 @@ def vae_encoder():
 # Loss function for encoder.
 
 
-def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None):
+def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None, latent_broadcast=18):
     latents = E.get_output_for(reals, labels, is_training=True)
-    fakes = G.components.synthesis.run(latents)
+    fakes = G.components.synthesis.run(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]))
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
