@@ -101,7 +101,7 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
     #                                    custom_inputs=[partial(create_variable_for_generator, batch_size=minibatch_size),
     #                                                   partial(create_stub, batch_size=minibatch_size)])
     fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
-    fakes = Gs.run(latents, None, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
+    fakes = G.run(latents, None, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
