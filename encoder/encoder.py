@@ -7,6 +7,18 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
 from dnnlib.tflib.autosummary import autosummary
 
+from functools import partial
+
+
+def create_stub(name, batch_size):
+    return tf.constant(0, dtype='float32', shape=(batch_size, 0))
+
+
+def create_variable_for_generator(name, batch_size):
+    return tf.get_variable('learnable_dlatents',
+                           shape=(batch_size, 18, 512),
+                           dtype='float32',
+                           initializer=tf.initializers.random_normal())
 
 # ----------------------------------------------------------------------------
 # Fully-connected encoder
@@ -84,7 +96,12 @@ def vae_encoder():
 
 def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None):
     latents = E.get_output_for(reals, labels, is_training=True)
-    fakes = G.components.synthesis.run(latents)
+    # fakes = G.components.synthesis.run(latents,
+    #                                    minibatch_size=minibatch_size,
+    #                                    custom_inputs=[partial(create_variable_for_generator, batch_size=minibatch_size),
+    #                                                   partial(create_stub, batch_size=minibatch_size)])
+    fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
+    fakes = Gs.run(latents, None, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
