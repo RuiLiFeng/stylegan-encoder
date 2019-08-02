@@ -96,12 +96,10 @@ def vae_encoder():
 
 def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None):
     latents = E.get_output_for(reals, labels, is_training=True)
-    # fakes = G.components.synthesis.run(latents,
-    #                                    minibatch_size=minibatch_size,
-    #                                    custom_inputs=[partial(create_variable_for_generator, batch_size=minibatch_size),
-    #                                                   partial(create_stub, batch_size=minibatch_size)])
-    fmt = dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True)
-    fakes = G.run(latents, None, truncation_psi=0.7, randomize_noise=True, output_transform=fmt)
+    fakes = G.components.synthesis.run(latents,
+                                       minibatch_size=minibatch_size,
+                                       custom_inputs=[partial(create_variable_for_generator, batch_size=minibatch_size),
+                                                      partial(create_stub, batch_size=minibatch_size)])
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
