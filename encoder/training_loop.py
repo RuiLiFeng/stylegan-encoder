@@ -178,17 +178,20 @@ def training_loop(
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
             #lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
             lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
-            print(lod_in)
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
+            print("reals")
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
                 E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
+                print('E_loss')
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
     E_train_op = E_opt.apply_updates()
+    print("train_op")
 
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
+    print("Es_update_op")
     with tf.device('/gpu:0'):
         try:
             peak_gpu_mem_op = tf.contrib.memory_stats.MaxBytesInUse()
