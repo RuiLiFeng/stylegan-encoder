@@ -240,7 +240,7 @@ def training_loop(
             for _E_repeat in range(E_repeats):
                 print(sched.lod.dtype)
                 tflib.run([E_train_op, Es_update_op],
-                          {lod_in: sched.lod, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
+                          {lod_in: 0.0, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
                 cur_nimg += sched.minibatch
             #tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
 
