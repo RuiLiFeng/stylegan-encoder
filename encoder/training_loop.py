@@ -176,18 +176,22 @@ def training_loop(
             E_gpu = E if gpu == 0 else E.clone(E.name + '_shadow')
             G_gpu = Gs if gpu == 0 else Gs.clone(Gs.name + '_shadow')
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
-            # lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
-            lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
+            lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
+            # lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
+                print("E_loss")
+                print(lod_in)
                 E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
     E_train_op = E_opt.apply_updates()
-
+    print("Es_update")
+    print(lod_in)
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
+
     with tf.device('/gpu:0'):
         try:
             peak_gpu_mem_op = tf.contrib.memory_stats.MaxBytesInUse()
@@ -196,9 +200,9 @@ def training_loop(
 
     print('Setting up snapshot image grid...')
     grid_size, grid_reals, grid_labels, grid_latents = misc.setup_snapshot_image_grid(G, training_set, **grid_args)
-    grid_latents = Es.run(grid_reals)
     sched = training_schedule(cur_nimg=total_kimg * 1000, training_set=training_set, num_gpus=submit_config.num_gpus,
                               **sched_args)
+    grid_latents = Es.run(grid_reals, is_validation=True, minibatch_size=sched.minibatch // submit_config.num_gpus)
     grid_fakes = Gs.run(grid_latents, grid_labels, is_validation=True,
                         minibatch_size=sched.minibatch // submit_config.num_gpus)
 

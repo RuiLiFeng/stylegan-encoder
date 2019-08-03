@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encoder/training_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/training_loop.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="241" column="23" selection-start-line="241" selection-start-column="23" selection-end-line="241" selection-end-column="23" />
+            <state relative-caret-position="187">
+              <caret line="191" column="17" lean-forward="true" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -49,7 +49,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/tflib/tfutil.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="241">
@@ -70,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="432">
+            <state relative-caret-position="4479">
               <caret line="439" column="48" selection-start-line="439" selection-start-column="48" selection-end-line="439" selection-end-column="48" />
             </state>
           </provider>
@@ -240,7 +240,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59160000" />
+    <option name="totallyTimeSpent" value="59568000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -399,23 +399,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encode_images.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="432">
-          <caret line="439" column="48" selection-start-line="439" selection-start-column="48" selection-end-line="439" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="632">
@@ -450,20 +433,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
+    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/tfutil.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="241" column="23" selection-start-line="241" selection-start-column="23" selection-end-line="241" selection-end-column="23" />
+        <state relative-caret-position="241">
+          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4479">
+          <caret line="439" column="48" selection-start-line="439" selection-start-column="48" selection-end-line="439" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encode_images.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/tfutil.py">
+    <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="22" column="4" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
+        <state relative-caret-position="187">
+          <caret line="191" column="17" lean-forward="true" selection-start-line="191" selection-start-column="17" selection-end-line="191" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
