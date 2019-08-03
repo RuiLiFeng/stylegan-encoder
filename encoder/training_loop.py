@@ -162,6 +162,7 @@ def training_loop(
     E.print_layers()
 
     print('Building TensorFlow graph...')
+    tf.reset_default_graph()
     with tf.name_scope('Inputs'), tf.device('/cpu:0'):
         lod_in = tf.placeholder(tf.float32, name='lod_in', shape=[])
         lrate_in = tf.placeholder(tf.float32, name='lrate_in', shape=[])
