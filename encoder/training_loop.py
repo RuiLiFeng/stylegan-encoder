@@ -4,6 +4,7 @@ import tensorflow as tf
 import dnnlib
 import dnnlib.tflib as tflib
 from dnnlib.tflib.autosummary import autosummary
+import keras.backend as K
 
 import config
 import train_encoder
@@ -132,8 +133,9 @@ def training_loop(
 
     # Initialize dnnlib and TensorFlow.
     ctx = dnnlib.RunContext(submit_config, train_encoder)
-    tf.reset_default_graph()
-    tflib.init_tf(tf_config)
+    sess = tf.get_default_session()
+    K.set_session(sess)
+    # tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 
     # Load training set.
