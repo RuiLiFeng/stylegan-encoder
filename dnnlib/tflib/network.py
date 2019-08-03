@@ -438,6 +438,9 @@ class Network:
 
         # Run minibatches.
         in_expr, out_expr = self._run_cache[key]
+        print(in_expr)
+        print (self.input_names)
+        print(in_arrays)
         out_arrays = [np.empty([num_items] + tfutil.shape_to_list(expr.shape)[1:], expr.dtype.name) for expr in out_expr]
 
         for mb_begin in range(0, num_items, minibatch_size):
