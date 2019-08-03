@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/encoder/encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/encoder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,23 +13,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/train_encoder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="760">
-              <caret line="50" column="55" lean-forward="true" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-                <element signature="e#1877#1983#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encode_images.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="627">
-              <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+            <state relative-caret-position="342">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="380">
+              <caret line="176" column="69" lean-forward="true" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -39,13 +37,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
+        <entry file="file://$PROJECT_DIR$/dnnlib/tflib/optimizer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-836">
-              <caret line="91" column="53" lean-forward="true" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="665">
+              <caret line="69" column="40" lean-forward="true" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
             </state>
           </provider>
         </entry>
@@ -53,8 +48,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="852">
-              <caret line="387" column="34" lean-forward="true" selection-start-line="387" selection-start-column="34" selection-end-line="387" selection-end-column="34" />
+            <state relative-caret-position="407">
+              <caret line="451" column="52" lean-forward="true" selection-start-line="451" selection-start-column="52" selection-end-line="451" selection-end-column="52" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/generate_figures.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="62" column="43" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -69,19 +82,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/training/misc.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="30" column="4" selection-start-line="30" selection-start-column="4" selection-end-line="30" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1641">
-              <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+            <state relative-caret-position="1026">
+              <caret line="102" column="69" lean-forward="true" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -92,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/perceptual_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="7" selection-start-line="7" selection-end-line="7" />
+            <state relative-caret-position="513">
+              <caret line="45" column="94" lean-forward="true" selection-start-line="45" selection-start-column="94" selection-end-line="45" selection-end-column="94" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -104,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/encoder/generator_model.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="684">
-              <caret line="36" column="85" lean-forward="true" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
+            <state relative-caret-position="190">
+              <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
@@ -125,6 +129,8 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>input_shape</find>
+      <find>self.input_name</find>
+      <find>self.input_names</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -142,10 +148,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1912" />
-    <option name="y" value="-18" />
-    <option name="width" value="1096" />
-    <option name="height" value="1896" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -232,12 +238,13 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42887000" />
+    <option name="totallyTimeSpent" value="51976000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1912" y="-17" width="1096" height="1896" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.19208494" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.10607676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -251,8 +258,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32973894" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3291714" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3280363" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.18655097" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3275488" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -357,26 +364,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/perceptual_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="7" selection-start-line="7" selection-end-line="7" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/generator_model.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="684">
-          <caret line="36" column="85" lean-forward="true" selection-start-line="36" selection-start-column="85" selection-end-line="36" selection-end-column="85" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/tfutil.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -384,20 +371,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/functools.pyi">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-836">
-          <caret line="91" column="53" lean-forward="true" selection-start-line="91" selection-start-column="53" selection-end-line="91" selection-end-column="53" />
+        <state>
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharm2019.1/system/python_stubs/-811272029/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6346">
+          <caret line="334" column="4" selection-start-line="334" selection-start-column="4" selection-end-line="334" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/generate_figures.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="62" column="43" selection-start-line="62" selection-start-column="43" selection-end-line="62" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/generator_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/perceptual_model.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="513">
+          <caret line="45" column="94" lean-forward="true" selection-start-line="45" selection-start-column="94" selection-end-line="45" selection-end-column="94" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1026">
+          <caret line="102" column="69" lean-forward="true" selection-start-line="102" selection-start-column="69" selection-end-line="102" selection-end-column="69" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/metrics/metric_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="44" column="10" selection-start-line="44" selection-start-column="10" selection-end-line="44" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dnnlib/tflib/optimizer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="665">
+          <caret line="69" column="40" lean-forward="true" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/encode_images.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="48" column="14" lean-forward="true" selection-start-line="48" selection-start-column="14" selection-end-line="48" selection-end-column="14" />
+        <state relative-caret-position="342">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
@@ -406,17 +450,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dnnlib/tflib/network.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="387" column="34" lean-forward="true" selection-start-line="387" selection-start-column="34" selection-end-line="387" selection-end-column="34" />
+        <state relative-caret-position="407">
+          <caret line="451" column="52" lean-forward="true" selection-start-line="451" selection-start-column="52" selection-end-line="451" selection-end-column="52" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
+    <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1641">
-          <caret line="89" column="17" selection-start-line="89" selection-start-column="17" selection-end-line="89" selection-end-column="17" />
+        <state relative-caret-position="380">
+          <caret line="176" column="69" lean-forward="true" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
           <folding>
-            <element signature="e#0#23#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
