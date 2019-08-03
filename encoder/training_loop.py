@@ -134,12 +134,13 @@ def training_loop(
     ctx = dnnlib.RunContext(submit_config, train_encoder)
     tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
-    tf.reset_default_graph()
 
     # Load training set.
     training_set = dataset.load_dataset(data_dir=config.data_dir, verbose=True, **dataset_args)
 
     # Load generator and discriminator
+    tf.reset_default_graph()
+
     with tf.device('/gpu:0'):
         if load_id is not None:
             network_pkl = misc.locate_network_pkl(load_id, load_snapshot)
