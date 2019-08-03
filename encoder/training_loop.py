@@ -132,6 +132,7 @@ def training_loop(
 
     # Initialize dnnlib and TensorFlow.
     ctx = dnnlib.RunContext(submit_config, train_encoder)
+    tf.reset_default_graph()
     tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 
@@ -139,7 +140,6 @@ def training_loop(
     training_set = dataset.load_dataset(data_dir=config.data_dir, verbose=True, **dataset_args)
 
     # Load generator and discriminator
-    tf.reset_default_graph()
 
     with tf.device('/gpu:0'):
         if load_id is not None:
