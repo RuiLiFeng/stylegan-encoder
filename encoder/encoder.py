@@ -7,18 +7,6 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
 from dnnlib.tflib.autosummary import autosummary
 
-from functools import partial
-
-
-def create_stub(name, batch_size):
-    return tf.constant(0, dtype='float32', shape=(batch_size, 0))
-
-
-def create_variable_for_generator(name, batch_size):
-    return tf.get_variable('learnable_dlatents',
-                           shape=(batch_size, 18, 512),
-                           dtype='float32',
-                           initializer=tf.initializers.random_normal())
 
 
 synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True), minibatch_size=8)
@@ -99,7 +87,7 @@ def vae_encoder():
 
 def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None, latent_broadcast=18):
     latents = E.get_output_for(reals, labels, is_training=True)
-    fakes = G.components.synthesis.get_output_for(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]), is_training=False)
+    fakes = G.components.synthesis.run(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]), randomize_noise=False, **synthesis_kwargs)
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
