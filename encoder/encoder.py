@@ -90,7 +90,7 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
     latents = E.get_output_for(reals, labels, is_training=True)
     # fakes = G.components.synthesis.run(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]),
     #                                    minibatch_size=minibatch_size)
-    fakes = G.components.synthesis.get_output_for(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]))
+    fakes = G.components.synthesis.get_output_for(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]), is_training=True)
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
@@ -110,8 +110,8 @@ def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
 
 def wp_loss(D, reals, fakes, labels,
     wgan_lambda=10.0):  # Weight for the gradient penalty term.
-    real_scores_out = fp32(D.get_output_for(reals, labels))
-    fake_scores_out = fp32(D.get_output_for(fakes, labels))
+    real_scores_out = fp32(D.get_output_for(reals, labels, is_training=True))
+    fake_scores_out = fp32(D.get_output_for(fakes, labels, is_training=True))
     loss = fake_scores_out - real_scores_out
     grads = fp32(tf.gradients(fake_scores_out, [fakes])[0])
     grads_norms = tf.sqrt(tf.reduce_sum(tf.square(grads), axis=[1, 2, 3]))

@@ -181,15 +181,11 @@ def training_loop(
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
-                print("E_loss")
-                print(lod_in)
                 E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
     E_train_op = E_opt.apply_updates()
-    print("Es_update")
-    print(lod_in)
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
 
     with tf.device('/gpu:0'):
