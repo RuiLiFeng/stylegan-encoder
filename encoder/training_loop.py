@@ -132,6 +132,7 @@ def training_loop(
 
     # Initialize dnnlib and TensorFlow.
     ctx = dnnlib.RunContext(submit_config, train_encoder)
+    tf.reset_default_graph()
     tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 
@@ -162,7 +163,6 @@ def training_loop(
     E.print_layers()
 
     print('Building TensorFlow graph...')
-    tf.reset_default_graph()
     with tf.name_scope('Inputs'), tf.device('/cpu:0'):
         lod_in = tf.placeholder(tf.float32, name='lod_in', shape=[])
         lrate_in = tf.placeholder(tf.float32, name='lrate_in', shape=[])
