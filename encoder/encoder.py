@@ -38,7 +38,8 @@ def fc_encoder(
             x = dense(x, fmaps=fmaps, gain=gain, use_wscale=use_wscale, lrmul=mapping_lrmul)
             x = apply_bias(x, lrmul=mapping_lrmul)
             x = act(x)
-    return x
+    encoder_out = tf.identity(x, name='encoder_out')
+    return encoder_out
 
 # ----------------------------------------------------------------------------
 # Inverse of style generator as encoder
