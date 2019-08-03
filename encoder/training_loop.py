@@ -176,8 +176,8 @@ def training_loop(
             E_gpu = E if gpu == 0 else E.clone(E.name + '_shadow')
             G_gpu = Gs if gpu == 0 else Gs.clone(Gs.name + '_shadow')
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
-            lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
-            #lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
+            # lod_assign_ops = [tf.assign(G_gpu.find_var('lod'), lod_in), tf.assign(E_gpu.find_var('lod'), lod_in), tf.assign(D_gpu.find_var('lod'), lod_in)]
+            lod_assign_ops = [tf.assign(E_gpu.find_var('lod'), lod_in)]
             reals, labels = training_set.get_minibatch_tf()
             reals = process_reals(reals, lod_in, mirror_augment, training_set.dynamic_range, drange_net)
             with tf.name_scope('E_loss'), tf.control_dependencies(lod_assign_ops):
@@ -238,7 +238,7 @@ def training_loop(
         assert sched.lod.dtype == "float32"
         for _mb_repeat in range(minibatch_repeats):
             for _E_repeat in range(E_repeats):
-                tflib.run(lod_assign_ops + [E_train_op, Es_update_op],
+                tflib.run([E_train_op, Es_update_op],
                           {lod_in: sched.lod, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
                 cur_nimg += sched.minibatch
             #tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
