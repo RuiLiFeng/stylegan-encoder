@@ -94,8 +94,8 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
     # v_loss = vgg_loss(train_shape, reals, fakes)
     # v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
-    loss = v_loss + beta * w_loss
-    return loss
+    #loss = v_loss + beta * w_loss
+    return w_loss
 
 
 def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
