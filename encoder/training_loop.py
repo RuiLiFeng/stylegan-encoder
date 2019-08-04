@@ -172,7 +172,7 @@ def training_loop(
 
     E_opt = tflib.Optimizer(name='TrainE', learning_rate=lrate_in, **E_opt_args)
     for gpu in range(submit_config.num_gpus):
-        with tf.name_scope('GPU%d' % gpu), tf.device('/gpu:%d' % gpu):
+        with tf.variable_scope('GPU%d' % gpu), tf.device('/gpu:%d' % gpu):
             E_gpu = E if gpu == 0 else E.clone(E.name + '_shadow')
             G_gpu = Gs if gpu == 0 else Gs.clone(Gs.name + '_shadow')
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
