@@ -252,39 +252,21 @@ def training_loop(
             total_time = ctx.get_time_since_start() + resume_time
 
             # Report progress.
-            # print(
-            #     'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
-            #         autosummary('Progress/tick', cur_tick),
-            #         autosummary('Progress/kimg', cur_nimg / 1000.0),
-            #         autosummary('Progress/lod', sched.lod),
-            #         autosummary('Progress/minibatch', sched.minibatch),
-            #         dnnlib.util.format_time(autosummary('Timing/total_sec', total_time)),
-            #         autosummary('Timing/sec_per_tick', tick_time),
-            #         autosummary('Timing/sec_per_kimg', tick_time / tick_kimg),
-            #         autosummary('Timing/maintenance_sec', maintenance_time),
-            #         autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)))
-            # autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
-            # autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
-
-            ## Avoid tf.merge_all_summariase
-            scur_tick = autosummary('Progress/tick', cur_tick)
-            scur_nimg = autosummary('Progress/kimg', cur_nimg / 1000.0)
-            slod = autosummary('Progress/lod', sched.lod)
-            sminibatch = autosummary('Progress/minibatch', sched.minibatch)
-            stotal_sec = autosummary('Timing/total_sec', total_time)
-            stick_time = autosummary('Timing/sec_per_tick', tick_time)
-            ssec_per_kimg = autosummary('Timing/sec_per_kimg', tick_time / tick_kimg)
-            smaintenance_time = autosummary('Timing/maintenance_sec', maintenance_time)
-            speak_gpu_mem_gb = autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)
-            stotal_hours = autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
-            stotal_days = autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
-
-            merge_list = [scur_tick, scur_nimg, slod, sminibatch, stotal_sec, stick_time, ssec_per_kimg, smaintenance_time, speak_gpu_mem_gb, stotal_hours, stotal_days]
-            ## Avoid tf.merge_all_summariase
-
             print(
-                 'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
-                 scur_tick, scur_nimg, slod, sminibatch, dnnlib.util.format_time(stotal_sec), stick_time, ssec_per_kimg, smaintenance_time, speak_gpu_mem_gb))
+                'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
+                    autosummary('Progress/tick', cur_tick),
+                    autosummary('Progress/kimg', cur_nimg / 1000.0),
+                    autosummary('Progress/lod', sched.lod),
+                    autosummary('Progress/minibatch', sched.minibatch),
+                    dnnlib.util.format_time(autosummary('Timing/total_sec', total_time)),
+                    autosummary('Timing/sec_per_tick', tick_time),
+                    autosummary('Timing/sec_per_kimg', tick_time / tick_kimg),
+                    autosummary('Timing/maintenance_sec', maintenance_time),
+                    autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)))
+            autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
+            autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
+
+
 
             # Save snapshots.
             if cur_tick % image_snapshot_ticks == 0 or done:
@@ -301,8 +283,7 @@ def training_loop(
 
             # Update summaries and RunContext.
             metrics.update_autosummaries()
-            # tflib.autosummary.save_summaries(summary_log, cur_nimg)
-            tflib.autosummary.save_summaries_with_name(summary_log, merge_list, cur_nimg)
+            tflib.autosummary.save_summaries(summary_log, cur_nimg)
             ctx.update('%.2f' % sched.lod, cur_epoch=cur_nimg // 1000, max_epoch=total_kimg)
             maintenance_time = ctx.get_last_update_interval() - tick_time
 

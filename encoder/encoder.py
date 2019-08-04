@@ -95,6 +95,7 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
 
 
 def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
+    sess = tf.get_default_session()
     vgg16 = VGG16(include_top=False, input_shape=(training_set.shape[1], training_set.shape[2], training_set.shape[0]), weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
     #vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
     vgg_model = vgg16
