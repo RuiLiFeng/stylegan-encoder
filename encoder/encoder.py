@@ -7,7 +7,7 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
 from dnnlib.tflib.autosummary import autosummary
 from functools import partial
-import keras.backend as K
+import tensorflow.keras.backend as K
 
 
 synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True), minibatch_size=8)
