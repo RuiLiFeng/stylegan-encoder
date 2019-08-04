@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="" />
+    <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/encoder/encoder.py" beforeDir="false" afterPath="$PROJECT_DIR$/encoder/encoder.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,11 +40,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
+            <state relative-caret-position="456">
+              <caret line="108" column="81" selection-start-line="108" selection-start-column="81" selection-end-line="108" selection-end-column="81" />
               <folding>
                 <element signature="e#0#23#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="765">
+              <caret line="159" column="72" lean-forward="true" selection-start-line="159" selection-start-column="72" selection-end-line="159" selection-end-column="72" />
             </state>
           </provider>
         </entry>
@@ -63,17 +74,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="741">
               <caret line="45" column="54" selection-start-line="45" selection-start-column="54" selection-end-line="45" selection-end-column="54" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/vgg/utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
               <folding>
                 <element signature="e#0#14#0" expanded="true" />
               </folding>
@@ -154,12 +154,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/training/networks_stylegan.py" />
         <option value="$PROJECT_DIR$/train_encoder.py" />
         <option value="$PROJECT_DIR$/dnnlib/tflib/autosummary.py" />
         <option value="$PROJECT_DIR$/dnnlib/tflib/network.py" />
         <option value="$PROJECT_DIR$/encoder/training_loop.py" />
         <option value="$PROJECT_DIR$/vgg/vgg19.py" />
+        <option value="$PROJECT_DIR$/training/networks_stylegan.py" />
         <option value="$PROJECT_DIR$/encoder/encoder.py" />
       </list>
     </option>
@@ -260,11 +260,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82561000" />
+    <option name="totallyTimeSpent" value="82832000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.10607676" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -466,13 +465,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-907">
-          <caret line="322" column="7" selection-start-line="322" selection-start-column="7" selection-end-line="322" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vgg/utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -556,10 +548,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/training/networks_stylegan.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="159" column="72" lean-forward="true" selection-start-line="159" selection-start-column="72" selection-end-line="159" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/encoder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="101" column="42" lean-forward="true" selection-start-line="101" selection-start-column="42" selection-end-line="101" selection-end-column="42" />
+        <state relative-caret-position="456">
+          <caret line="108" column="81" selection-start-line="108" selection-start-column="81" selection-end-line="108" selection-end-column="81" />
           <folding>
             <element signature="e#0#23#0" expanded="true" />
           </folding>
