@@ -17,7 +17,6 @@ synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8
 def fc_encoder(
         image,  # Input image: [minibatch, channel, height, weight]
         labels,       #
-        is_training=False,  #
         dlatent_size=512,  # Output shape
         mapping_layers=8,  # Number of mapping layers
         mapping_fmaps=50,  # Shape of intermediate latent features
@@ -31,7 +30,7 @@ def fc_encoder(
     image = tf.cast(image, 'float32')
     labels.set_shape([None, label_size])
     x = image
-    lod_in = tf.cast(tf.get_variable('lod', initializer=np.float32(0.0), trainable=False), tf.float32)
+    lod_in = tf.cast(tf.get_variable('lod', initializer=np.float32(0.0), trainable=False), 'float32')
     for layer_idx in range(mapping_layers):
         with tf.variable_scope('Dense%d' % layer_idx):
             fmaps = dlatent_size if layer_idx == mapping_layers - 1 else mapping_fmaps
