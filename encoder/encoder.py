@@ -87,11 +87,7 @@ def vae_encoder():
 
 def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labels=None, latent_broadcast=18):
     latents = E.get_output_for(reals, labels, is_training=True)
-    # fakes = G.components.synthesis.run(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]),
-    #                                    minibatch_size=minibatch_size)
     fakes = G.components.synthesis.get_output_for(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]), is_training=True)
-    train_shape = np.zeros([3, 1024, 1024])
-    # v_loss = vgg_loss(train_shape, reals, fakes)
     v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
@@ -100,7 +96,8 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
 
 def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
     vgg16 = VGG16(include_top=False, input_shape=(training_set.shape[1], training_set.shape[2], training_set.shape[0]), weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
-    vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
+    #vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
+    vgg_model = vgg16
     fakes_preprocess = preprocess_input(tf.image.resize_images(fakes, (training_set.shape[1], training_set.shape[2]), method=1))
     reals_preprocess = preprocess_input(tf.image.resize_images(reals, (training_set.shape[1], training_set.shape[2]), method=1))
     fake_img_features = vgg_model(fakes_preprocess)
