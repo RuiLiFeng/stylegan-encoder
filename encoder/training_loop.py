@@ -302,7 +302,7 @@ def training_loop(
             # Update summaries and RunContext.
             metrics.update_autosummaries()
             # tflib.autosummary.save_summaries(summary_log, cur_nimg)
-            # tflib.autosummary.save_summaries_with_name(summary_log, merge_list, cur_nimg)
+            tflib.autosummary.save_summaries_with_name(summary_log, merge_list, cur_nimg)
             ctx.update('%.2f' % sched.lod, cur_epoch=cur_nimg // 1000, max_epoch=total_kimg)
             maintenance_time = ctx.get_last_update_interval() - tick_time
 
