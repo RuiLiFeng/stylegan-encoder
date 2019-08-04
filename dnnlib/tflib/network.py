@@ -220,16 +220,20 @@ class Network:
                     expr = tf.zeros([tf.shape(valid_inputs[0])[0]] + shape[1:], name=name)
                 final_inputs.append(expr)
             out_expr = self._build_func(*final_inputs, **build_kwargs)
+            print('out_expr')
 
         # Propagate input shapes back to the user-specified expressions.
         for expr, final in zip(in_expr, final_inputs):
             if isinstance(expr, tf.Tensor):
                 expr.set_shape(final.shape)
+        print('propagate input')
 
         # Express outputs in the desired format.
         assert tfutil.is_tf_expression(out_expr) or isinstance(out_expr, tuple)
         if return_as_list:
             out_expr = [out_expr] if tfutil.is_tf_expression(out_expr) else list(out_expr)
+        print('propagate output')
+
         return out_expr
 
     def get_var_local_name(self, var_or_global_name: Union[TfExpression, str]) -> str:
