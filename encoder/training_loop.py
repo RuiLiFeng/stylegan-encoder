@@ -186,8 +186,11 @@ def training_loop(
                                                        **E_loss_args)
                 print('E_loss')
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
+            print('E_opt')
     E_train_op = E_opt.apply_updates()
+    print('E_update')
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
+    print('Es_update')
 
     with tf.device('/gpu:0'):
         try:

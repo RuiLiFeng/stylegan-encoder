@@ -15,7 +15,7 @@ synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8
 
 def fc_encoder(
         image,  # Input image: [minibatch, channel, height, weight]
-        labels,       #
+        labels=None,       #
         dlatent_size=512,  # Output shape
         mapping_layers=8,  # Number of mapping layers
         mapping_fmaps=50,  # Shape of intermediate latent features
