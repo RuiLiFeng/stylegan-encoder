@@ -91,7 +91,7 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
     #                                    minibatch_size=minibatch_size)
     fakes = G.components.synthesis.get_output_for(tf.tile(latents[:, np.newaxis], [1, latent_broadcast, 1]), is_training=True)
     train_shape = np.zeros([3, 1024, 1024])
-    v_loss = vgg_loss(train_shape, reals, fakes)
+    # v_loss = vgg_loss(train_shape, reals, fakes)
     # v_loss = vgg_loss(training_set, reals, fakes)
     w_loss = wp_loss(D, reals, fakes, labels)
     loss = v_loss + beta * w_loss
