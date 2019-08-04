@@ -7,6 +7,7 @@ from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
 from tensorflow.keras.models import Model
 from dnnlib.tflib.autosummary import autosummary
 from functools import partial
+import keras.backend as K
 
 
 synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True), minibatch_size=8)
@@ -95,10 +96,10 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
 
 
 def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
+    K.set_session(tf.get_default_session())
     # vgg16 = VGG16(include_top=False, input_shape=(training_set.shape[1], training_set.shape[2], training_set.shape[0]), weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
     vgg16 = VGG16(include_top=False, weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
-    #vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
-    vgg_model = vgg16
+    vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
     fakes_preprocess = preprocess_input(tf.image.resize_images(fakes, (training_set.shape[1], training_set.shape[2]), method=1))
     reals_preprocess = preprocess_input(tf.image.resize_images(reals, (training_set.shape[1], training_set.shape[2]), method=1))
     fake_img_features = vgg_model(fakes_preprocess)
