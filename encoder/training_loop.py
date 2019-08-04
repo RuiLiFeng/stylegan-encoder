@@ -238,11 +238,10 @@ def training_loop(
         prev_lod = sched.lod
 
         # Run training ops.
-        assert sched.lod.dtype == "float32"
         for _mb_repeat in range(minibatch_repeats):
             print(sched.lod.dtype)
             tflib.run([E_train_op, Es_update_op],
-                      {lod_in: 0.0, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
+                      {lod_in: sched.lod, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
             cur_nimg += sched.minibatch
             #tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
 
