@@ -4,7 +4,6 @@ import tensorflow as tf
 import dnnlib
 import dnnlib.tflib as tflib
 from dnnlib.tflib.autosummary import autosummary
-import keras.backend as K
 
 import config
 import train_encoder
@@ -116,7 +115,6 @@ def training_loop(
     metric_arg_list         = [],       # Options for MetricGroup.
     tf_config               = {},       # Options for tflib.init_tf().
     E_smoothing_kimg        = 10.0,     # Half-life of the running average of generator weights.
-    E_repeats               = 1,        # How many times the discriminator is trained per G iteration.
     minibatch_repeats       = 4,        # Number of minibatches to run before adjusting training parameters.
     reset_opt_for_new_lod   = True,     # Reset optimizer internal state (e.g. Adam moments) when new layers are introduced?
     total_kimg              = 15000,    # Total length of the training, measured in thousands of real images.
@@ -133,9 +131,7 @@ def training_loop(
 
     # Initialize dnnlib and TensorFlow.
     ctx = dnnlib.RunContext(submit_config, train_encoder)
-    sess = tf.get_default_session()
-    K.set_session(sess)
-    # tflib.init_tf(tf_config)
+    tflib.init_tf(tf_config)
     URL_FFHQ = 'https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ'  # karras2019stylegan-ffhq-1024x1024.pkl
 
     # Load training set.
@@ -147,10 +143,10 @@ def training_loop(
         if load_id is not None:
             network_pkl = misc.locate_network_pkl(load_id, load_snapshot)
             print('Loading networks from "%s"...' % network_pkl)
-            G, D, Gs = misc.load_pkl(network_pkl)
+            _, D, Gs = misc.load_pkl(network_pkl)
         else:
             print('Loading networks from URL https://drive.google.com/uc?id=1MEGjdvVpUsu1jB4zrXZN7Y4kBBOzizDQ...')
-            G, D, Gs = misc.load_pkl(URL_FFHQ)
+            _, D, Gs = misc.load_pkl(URL_FFHQ)
     Gs.print_layers(); D.print_layers()
 
     # Build encoder
@@ -199,7 +195,7 @@ def training_loop(
             peak_gpu_mem_op = tf.constant(0)
 
     print('Setting up snapshot image grid...')
-    grid_size, grid_reals, grid_labels, grid_latents = misc.setup_snapshot_image_grid(G, training_set, **grid_args)
+    grid_size, grid_reals, grid_labels, grid_latents = misc.setup_snapshot_image_grid(Gs, training_set, **grid_args)
     sched = training_schedule(cur_nimg=total_kimg * 1000, training_set=training_set, num_gpus=submit_config.num_gpus,
                               **sched_args)
     grid_latents = Es.run(grid_reals, is_validation=True, minibatch_size=sched.minibatch // submit_config.num_gpus)
@@ -215,8 +211,7 @@ def training_loop(
     if save_tf_graph:
         summary_log.add_graph(tf.get_default_graph())
     if save_weight_histograms:
-        G.setup_weight_histograms();
-        D.setup_weight_histograms()
+        E.setup_weight_histograms();
     metrics = metric_base.MetricGroup(metric_arg_list)
 
     print('Training...\n')
@@ -241,11 +236,10 @@ def training_loop(
         # Run training ops.
         assert sched.lod.dtype == "float32"
         for _mb_repeat in range(minibatch_repeats):
-            for _E_repeat in range(E_repeats):
-                print(sched.lod.dtype)
-                tflib.run([E_train_op, Es_update_op],
-                          {lod_in: 0.0, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
-                cur_nimg += sched.minibatch
+            print(sched.lod.dtype)
+            tflib.run([E_train_op, Es_update_op],
+                      {lod_in: 0.0, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
+            cur_nimg += sched.minibatch
             #tflib.run([E_train_op], {lod_in: sched.lod, lrate_in: sched.E_lrate, minibatch_in: sched.minibatch})
 
         # Perform maintenance tasks once per tick.
@@ -258,19 +252,39 @@ def training_loop(
             total_time = ctx.get_time_since_start() + resume_time
 
             # Report progress.
+            # print(
+            #     'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
+            #         autosummary('Progress/tick', cur_tick),
+            #         autosummary('Progress/kimg', cur_nimg / 1000.0),
+            #         autosummary('Progress/lod', sched.lod),
+            #         autosummary('Progress/minibatch', sched.minibatch),
+            #         dnnlib.util.format_time(autosummary('Timing/total_sec', total_time)),
+            #         autosummary('Timing/sec_per_tick', tick_time),
+            #         autosummary('Timing/sec_per_kimg', tick_time / tick_kimg),
+            #         autosummary('Timing/maintenance_sec', maintenance_time),
+            #         autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)))
+            # autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
+            # autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
+
+            ## Avoid tf.merge_all_summariase
+            scur_tick = autosummary('Progress/tick', cur_tick)
+            scur_nimg = autosummary('Progress/kimg', cur_nimg / 1000.0)
+            slod = autosummary('Progress/lod', sched.lod)
+            sminibatch = autosummary('Progress/minibatch', sched.minibatch)
+            stotal_sec = autosummary('Timing/total_sec', total_time)
+            stick_time = autosummary('Timing/sec_per_tick', tick_time)
+            ssec_per_kimg = autosummary('Timing/sec_per_kimg', tick_time / tick_kimg)
+            smaintenance_time = autosummary('Timing/maintenance_sec', maintenance_time)
+            speak_gpu_mem_gb = autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)
+            stotal_hours = autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
+            stotal_days = autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
+
+            merge_list = [scur_tick, scur_nimg, slod, sminibatch, stotal_sec, stick_time, ssec_per_kimg, smaintenance_time, speak_gpu_mem_gb, stotal_hours, stotal_days]
+            ## Avoid tf.merge_all_summariase
+
             print(
-                'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
-                    autosummary('Progress/tick', cur_tick),
-                    autosummary('Progress/kimg', cur_nimg / 1000.0),
-                    autosummary('Progress/lod', sched.lod),
-                    autosummary('Progress/minibatch', sched.minibatch),
-                    dnnlib.util.format_time(autosummary('Timing/total_sec', total_time)),
-                    autosummary('Timing/sec_per_tick', tick_time),
-                    autosummary('Timing/sec_per_kimg', tick_time / tick_kimg),
-                    autosummary('Timing/maintenance_sec', maintenance_time),
-                    autosummary('Resources/peak_gpu_mem_gb', peak_gpu_mem_op.eval() / 2 ** 30)))
-            autosummary('Timing/total_hours', total_time / (60.0 * 60.0))
-            autosummary('Timing/total_days', total_time / (24.0 * 60.0 * 60.0))
+                 'tick %-5d kimg %-8.1f lod %-5.2f minibatch %-4d time %-12s sec/tick %-7.1f sec/kimg %-7.2f maintenance %-6.1f gpumem %-4.1f' % (
+                 scur_tick, scur_nimg, slod, sminibatch, dnnlib.util.format_time(stotal_sec), stick_time, ssec_per_kimg, smaintenance_time, speak_gpu_mem_gb))
 
             # Save snapshots.
             if cur_tick % image_snapshot_ticks == 0 or done:
@@ -282,17 +296,18 @@ def training_loop(
                                      drange=drange_net, grid_size=grid_size)
             if cur_tick % network_snapshot_ticks == 0 or done or cur_tick == 1:
                 pkl = os.path.join(submit_config.run_dir, 'network-snapshot-%06d.pkl' % (cur_nimg // 1000))
-                misc.save_pkl((G, D, Gs), pkl)
+                misc.save_pkl((E, Es), pkl)
                 metrics.run(pkl, run_dir=submit_config.run_dir, num_gpus=submit_config.num_gpus, tf_config=tf_config)
 
             # Update summaries and RunContext.
             metrics.update_autosummaries()
-            tflib.autosummary.save_summaries(summary_log, cur_nimg)
+            # tflib.autosummary.save_summaries(summary_log, cur_nimg)
+            tflib.autosummary.save_summaries_with_name(summary_log, merge_list, cur_nimg)
             ctx.update('%.2f' % sched.lod, cur_epoch=cur_nimg // 1000, max_epoch=total_kimg)
             maintenance_time = ctx.get_last_update_interval() - tick_time
 
     # Write final results.
-    misc.save_pkl((G, D, Gs), os.path.join(submit_config.run_dir, 'network-final.pkl'))
+    misc.save_pkl((E, Es), os.path.join(submit_config.run_dir, 'network-final.pkl'))
     summary_log.close()
 
     ctx.close()
