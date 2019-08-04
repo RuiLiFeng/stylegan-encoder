@@ -184,6 +184,7 @@ def training_loop(
                 E_loss = dnnlib.util.call_func_by_name(G=G_gpu, E=E_gpu, D=D_gpu, E_opt=E_opt, training_set=training_set,
                                                        minibatch_size=minibatch_split, reals=reals, labels=labels,
                                                        **E_loss_args)
+                print('E_loss')
             E_opt.register_gradients(tf.reduce_mean(E_loss), E_gpu.trainables)
     E_train_op = E_opt.apply_updates()
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
