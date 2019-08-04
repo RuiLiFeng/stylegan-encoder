@@ -185,5 +185,5 @@ def save_summaries(file_writer, global_step=None):
 
 
 def save_summaries_with_name(file_writer, merge_list, global_step=None):
-    _merge_op = tf.summary.merge_all(merge_list)
+    _merge_op = tf.summary.merge(merge_list)
     file_writer.add_summary(_merge_op.eval(), global_step)
