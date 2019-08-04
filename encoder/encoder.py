@@ -99,12 +99,12 @@ def vgg_loss(training_set, reals, fakes, mapping_fmaps=512):
         reals = tf.transpose(reals, perm=[0, 2, 3, 1])
         vgg_real = vgg19.Vgg19(vgg19_npy_path='/gdata/fengrl/encoder/vgg19.npy')
         vgg_real.build(reals)
-        real_img_features = vgg_real.pool5(reals)
+        real_img_features = vgg_real.pool5
     with tf.name_scope('vgg_fake'):
         fakes = tf.transpose(fakes, perm=[0, 2, 3, 1])
         vgg_fake = vgg19.Vgg19(vgg19_npy_path='/gdata/fengrl/encoder/vgg19.npy')
         vgg_fake.build(fakes)
-        fake_img_features = vgg_fake.pool5(fakes)
+        fake_img_features = vgg_fake.pool5
     with tf.name_scope('VggLoss'):
         logits = dense(fake_img_features - real_img_features, fmaps=mapping_fmaps)
         loss = tf.losses.mean_squared_error(logits, tf.zeros(logits.shape))
