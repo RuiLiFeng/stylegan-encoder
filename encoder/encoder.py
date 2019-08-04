@@ -3,11 +3,9 @@ import numpy as np
 
 from training.networks_stylegan import *
 from training.loss import fp32
-from tensorflow.keras.applications.vgg16 import VGG16, preprocess_input
-from tensorflow.keras.models import Model
 from dnnlib.tflib.autosummary import autosummary
 from functools import partial
-import tensorflow.keras.backend as K
+from vgg import vgg19
 
 
 synthesis_kwargs = dict(output_transform=dict(func=tflib.convert_images_to_uint8, nchw_to_nhwc=True), minibatch_size=8)
@@ -95,15 +93,18 @@ def encoder_loss(G, E, D, E_opt, training_set, minibatch_size, reals, beta, labe
     return loss
 
 
-def vgg_loss(training_set, reals, fakes, vgg_depth=9, mapping_fmaps=512):
-    K.set_session(tf.get_default_session())
-    # vgg16 = VGG16(include_top=False, input_shape=(training_set.shape[1], training_set.shape[2], training_set.shape[0]), weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
-    vgg16 = VGG16(include_top=False, weights='/gdata/fengrl/encoder/vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5')
-    vgg_model = Model(vgg16.input, vgg16.layers[vgg_depth].output)
-    fakes_preprocess = preprocess_input(tf.image.resize_images(fakes, (training_set.shape[1], training_set.shape[2]), method=1))
-    reals_preprocess = preprocess_input(tf.image.resize_images(reals, (training_set.shape[1], training_set.shape[2]), method=1))
-    fake_img_features = vgg_model(fakes_preprocess)
-    real_img_features = vgg_model(reals_preprocess)
+def vgg_loss(training_set, reals, fakes, mapping_fmaps=512):
+
+    with tf.name_scope('vgg_real'):
+        reals = tf.transpose(reals, perm=[0, 2, 3, 1])
+        vgg_real = vgg19.Vgg19(vgg19_npy_path='/gdata/fengrl/encoder/vgg19.npy')
+        vgg_real.build(reals)
+        real_img_features = vgg_real.pool5(reals)
+    with tf.name_scope('vgg_fake'):
+        fakes = tf.transpose(fakes, perm=[0, 2, 3, 1])
+        vgg_fake = vgg19.Vgg19(vgg19_npy_path='/gdata/fengrl/encoder/vgg19.npy')
+        vgg_fake.build(fakes)
+        fake_img_features = vgg_fake.pool5(fakes)
     with tf.name_scope('VggLoss'):
         logits = dense(fake_img_features - real_img_features, fmaps=mapping_fmaps)
         loss = tf.losses.mean_squared_error(logits, tf.zeros(logits.shape))
