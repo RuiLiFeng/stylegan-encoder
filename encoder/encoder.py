@@ -106,7 +106,7 @@ def vgg_loss(training_set, reals, fakes, mapping_fmaps=512):
         vgg_fake.build(fakes)
         fake_img_features = vgg_fake.pool5
     with tf.name_scope('VggLoss'):
-        logits = dense(fake_img_features - real_img_features, fmaps=mapping_fmaps)
+        logits = dense(fake_img_features - real_img_features, fmaps=mapping_fmaps, name_scope='VggLossDenseWeight')
         loss = tf.losses.mean_squared_error(logits, tf.zeros(tf.shape(logits)))
     return loss
 

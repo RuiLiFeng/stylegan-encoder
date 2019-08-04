@@ -132,7 +132,7 @@ def downscale2d(x, factor=2):
 #----------------------------------------------------------------------------
 # Get/create weight tensor for a convolutional or fully-connected layer.
 
-def get_weight(shape, gain=np.sqrt(2), use_wscale=False, lrmul=1):
+def get_weight(shape, gain=np.sqrt(2), use_wscale=False, lrmul=1, name_scope=None):
     fan_in = np.prod(shape[:-1]) # [kernel, kernel, fmaps_in, fmaps_out] or [in, out]
     he_std = gain / np.sqrt(fan_in) # He init
 
@@ -146,7 +146,11 @@ def get_weight(shape, gain=np.sqrt(2), use_wscale=False, lrmul=1):
 
     # Create variable.
     init = tf.initializers.random_normal(0, init_std)
-    return tf.get_variable('weight', shape=shape, initializer=init) * runtime_coef
+    if name_scope==None:
+        return tf.get_variable('weight', shape=shape, initializer=init) * runtime_coef
+    else:
+        assert isinstance(name_scope, str)
+        return tf.get_variable(name_scope, shape=shape, initializer=init) * runtime_coef
 
 #----------------------------------------------------------------------------
 # Fully-connected layer.
