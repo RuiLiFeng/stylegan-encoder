@@ -11,6 +11,26 @@ from training import dataset
 from training import misc
 from metrics import metric_base
 
+from tensorflow.python.client import device_lib
+
+
+def get_available_gpus():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'GPU']
+
+
+print(get_available_gpus())
+
+
+def get_available_cpus():
+    local_device_protos = device_lib.list_local_devices()
+    return [x.name for x in local_device_protos if x.device_type == 'CPU']
+
+
+print(get_available_cpus())
+
+
+
 #----------------------------------------------------------------------------
 # Just-in-time processing of training images before feeding them to the networks.
 
@@ -138,8 +158,10 @@ def training_loop(
     training_set = dataset.load_dataset(data_dir=config.data_dir, verbose=True, **dataset_args)
 
     # Load generator and discriminator
+    cpu_list = get_available_cpus()
+    gpu_list = get_available_gpus()
 
-    with tf.device('/gpu:0'):
+    with tf.device(gpu_list[0]):
         if load_id is not None:
             network_pkl = misc.locate_network_pkl(load_id, load_snapshot)
             print('Loading networks from "%s"...' % network_pkl)
@@ -150,7 +172,7 @@ def training_loop(
     Gs.print_layers(); D.print_layers()
 
     # Build encoder
-    with tf.device('/gpu:0'):
+    with tf.device(gpu_list[0]):
         if resume_run_id is not None:
             network_pkl = misc.locate_network_pkl(resume_run_id, resume_snapshot)
             print('Loading encoder networks from "%s"...' % network_pkl)
@@ -162,7 +184,7 @@ def training_loop(
     E.print_layers()
 
     print('Building TensorFlow graph...')
-    with tf.name_scope('Inputs'), tf.device('/cpu:0'):
+    with tf.name_scope('Inputs'), tf.device(cpu_list[0]):
         lod_in = tf.placeholder(tf.float32, name='lod_in', shape=[])
         lrate_in = tf.placeholder(tf.float32, name='lrate_in', shape=[])
         minibatch_in = tf.placeholder(tf.int32, name='minibatch_in', shape=[])
@@ -172,7 +194,7 @@ def training_loop(
 
     E_opt = tflib.Optimizer(name='TrainE', learning_rate=lrate_in, **E_opt_args)
     for gpu in range(submit_config.num_gpus):
-        with tf.name_scope('GPU%d' % gpu), tf.device('/gpu:%d' % gpu):
+        with tf.name_scope('GPU%d' % gpu), tf.device(gpu_list[gpu]):
             E_gpu = E if gpu == 0 else E.clone(E.name + '_shadow')
             G_gpu = Gs if gpu == 0 else Gs.clone(Gs.name + '_shadow')
             D_gpu = D if gpu == 0 else D.clone(D.name + '_shadow')
@@ -192,7 +214,7 @@ def training_loop(
     Es_update_op = Es.setup_as_moving_average_of(E, beta=Es_beta)
     print('Es_update')
 
-    with tf.device('/gpu:0'):
+    with tf.device(gpu_list[0]):
         try:
             peak_gpu_mem_op = tf.contrib.memory_stats.MaxBytesInUse()
         except tf.errors.NotFoundError:
