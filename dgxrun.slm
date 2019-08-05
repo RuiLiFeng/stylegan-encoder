@@ -1,0 +1,9 @@
+#!/bin/bash
+  #SBATCH --job-name=encoder
+  #SBATCH --gres=gpu:4
+  #SBATCH --output=\ghome\fengrl\home\stylegan-encoder\log
+  echo "Submitted from:"$SLURM_SUBMIT_DIR" on node:"$SLURM_SUBMIT_HOST
+  echo "Running on node "$SLURM_JOB_NODELIST 
+  echo "Allocate Gpu Units:"$CUDA_VISIBLE_DEVICES
+  ##program here ##
+  startdocker -u "-v /gpub:/fengrl -i" -P /ghome/fengrl/home/stylegan-encoder -D /gdata/fengrl -c 'python /ghome/fengrl/home/stylegan-encoder/train_encoder.py' bit:5000/fengrl-conda-tf
