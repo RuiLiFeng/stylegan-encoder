@@ -294,7 +294,7 @@ def training_loop(
 
             # Save snapshots.
             if cur_tick % image_snapshot_ticks == 0 or done:
-                grid_latents = Es.run(grid_reals)
+                grid_latents = Es.run(grid_reals, grid_labels, minibatch_size=sched.minibatch // submit_config.num_gpus)
                 grid_fakes = Gs.run(grid_latents, grid_labels, is_validation=True,
                                     minibatch_size=sched.minibatch // submit_config.num_gpus)
                 misc.save_image_grid(grid_fakes,
