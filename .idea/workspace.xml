@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="" />
+    <list default="true" id="b21c68a4-4a73-4014-b610-09716857291c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -13,8 +15,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="274" column="56" lean-forward="true" selection-start-line="274" selection-start-column="56" selection-end-line="274" selection-end-column="56" />
+            <state relative-caret-position="453">
+              <caret line="313" column="26" lean-forward="true" selection-start-line="313" selection-start-column="26" selection-end-line="313" selection-end-column="26" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -25,7 +27,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/training/training_loop.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="472">
+            <state relative-caret-position="16">
               <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
               <folding>
                 <element signature="e#371#380#0" expanded="true" />
@@ -37,7 +39,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dnnlib/submission/run_context.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
+            <state relative-caret-position="456">
               <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
             </state>
           </provider>
@@ -263,7 +265,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90615000" />
+    <option name="totallyTimeSpent" value="91530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -568,16 +570,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dnnlib/submission/run_context.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1140">
-          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/training/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="472">
+        <state relative-caret-position="16">
           <caret line="239" column="56" lean-forward="true" selection-start-line="239" selection-start-column="56" selection-end-line="239" selection-end-column="56" />
           <folding>
             <element signature="e#371#380#0" expanded="true" />
@@ -585,10 +580,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dnnlib/submission/run_context.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="81" column="8" selection-start-line="81" selection-start-column="8" selection-end-line="81" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/encoder/training_loop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="274" column="56" lean-forward="true" selection-start-line="274" selection-start-column="56" selection-end-line="274" selection-end-column="56" />
+        <state relative-caret-position="453">
+          <caret line="313" column="26" lean-forward="true" selection-start-line="313" selection-start-column="26" selection-end-line="313" selection-end-column="26" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
